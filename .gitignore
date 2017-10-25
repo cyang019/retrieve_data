@@ -1,0 +1,5 @@
+# ignore cache
+**/.DS_Store
+
+# skip raw data
+input/raw_data/**
