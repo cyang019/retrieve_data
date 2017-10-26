@@ -3,9 +3,6 @@
 
 """
 
-
-import heapq
-
 class NotEnoughFields(ValueError):
     """An exception indicating insufficient number of fields in an input entry.
     """
@@ -33,6 +30,8 @@ def extract_info_from_line(line):
 
     cmte_id = entries[0]
     zipcode = entries[10]  # 11th position
+    if len(zipcode) > 5:   # only keep 1st 5 digits for zipcode
+        zipcode = zipcode[:5]
     t_dt = entries[13]  # transaction date at 14th position
     t_amt = entries[14]  # transaction amount at 15th position
     other_id = entries[15]  # other identification number, should be empty for
@@ -55,7 +54,10 @@ class Record:
     """
     def __init__(self):
         """Prepares containers for running median by zip and median by date.
+        
+        Dictionaries for running median by zip and median by date respectively.
         """
+        self.tracks = {}, {}
         pass
 
     def parse_single_entry(self, line):

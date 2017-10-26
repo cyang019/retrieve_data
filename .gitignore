@@ -1,5 +1,7 @@
 # ignore cache
 **/.DS_Store
+**/*.pyc
+**/__pycache__/**
 
 # skip raw data
 input/raw_data/**
