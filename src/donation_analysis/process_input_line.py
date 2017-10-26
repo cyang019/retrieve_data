@@ -6,7 +6,7 @@
 
 import heapq
 
-class InsufficientEntryError(ValueError):
+class NotEnoughFields(ValueError):
     """An exception indicating insufficient number of fields in an input entry.
     """
     pass
@@ -26,7 +26,7 @@ def extract_info_from_line(line):
     """
     entries = line.split("|")  # fields are pipe separated
     if len(entries) < 16:
-        raise InsufficientEntryError( \
+        raise NotEnoughFields( \
                 "each line should contain"
                 " at least 16 fields according to specifications"
                 " for file format information.")
