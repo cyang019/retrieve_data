@@ -3,6 +3,9 @@
 
 """
 
+from .calc_median import RunningMedian
+
+
 class NotEnoughFields(ValueError):
     """An exception indicating insufficient number of fields in an input entry.
     """
@@ -57,7 +60,8 @@ class Record:
         
         Dictionaries for running median by zip and median by date respectively.
         """
-        self.tracks = {}, {}
+        self.zip_track = {}
+        self.date_track = {}
         pass
 
     def parse_single_entry(self, line):
@@ -83,7 +87,16 @@ class Record:
         return out_str
 
     def add_zip_num(self, cmte_id, zip_code, t_amt):
-        pass
+        if cmte_id not in self.zip_track:
+            self.zip_track[cmte_id] = {}
+        
+        if zip_code not in self.zip_track[cmte_id]:
+            self.zip_track[cmte_id][zip_code] = RunningMedian()
+
+        results = self.zip_track[cmte_id][zip_code].push_and_calc(t_amt)
+        return results
+
+
 
     def add_date_num(self, cmte_id, date, t_amt):
         pass
