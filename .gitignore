@@ -5,3 +5,6 @@
 
 # skip raw data
 input/raw_data/**
+
+# skip temp data
+insight_testsuite/temp/**
