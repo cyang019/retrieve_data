@@ -44,11 +44,21 @@ def extract_info_from_line(line):
 def check_zip(zip_code):
     """check if zip code has correct format.
     """
+    if len(zip_code) < 5:
+        return False
+    if not zip_code[:5].isdigit():
+        return False
     return True
 
 def check_date(date):
     """check if date string has correct format.
     """
+    if len(date) != 8:
+        return False
+    if not date.isdigit():
+        return False
+    
+
     return True
 
 def date_to_numerical(date):
@@ -86,7 +96,8 @@ class Record:
         cmte_id, zip_code, t_dt, t_amt, other_id = extract_info_from_line(line)
 
         out_str = None
-        if len(other_id) > 0:   # skip when OTHER_ID contains non-empty value
+        if (len(other_id) > 0) or (len(cmte_id) == 0) or (len(t_amt) == 0):   
+            # skip invalid inputs
             return out_str
         
         if check_zip(zip_code):
@@ -95,7 +106,7 @@ class Record:
                     cmte_id, zip_code, t_amt)
             out_str = "|".join([cmte_id, zip_code, \
                                str(zip_median), str(zip_cnt), str(zip_total)])
-            out_str += "\n"
+            out_str += "\n"     # line terminator
 
         if check_date(t_dt):
             # record entry for the recipient and date combination
@@ -105,6 +116,10 @@ class Record:
 
     def add_zip_num(self, cmte_id, zip_code, t_amt):
         """add transaction amount to the track for zip_code categorized record.
+
+        Returns:
+            a string containing running median, transaction count,
+            and transaction amount.
         """
         if cmte_id not in self.zip_track:
             self.zip_track[cmte_id] = {}
@@ -126,7 +141,6 @@ class Record:
             self.date_track[cmte_id][date] = StaticMedian()
 
         self.date_track[cmte_id][date].push(t_amt)
-
         return
 
     def calc_and_export_medianvals_by_date(self, file_handler):
@@ -134,6 +148,7 @@ class Record:
         """
         recipients = sorted(self.date_track.keys())
         for r, date_vals in sorted(self.date_track.items()):
+            # for each recipient, sort date using date_to_numerical values
             for d, vals in sorted(date_vals.items(), \
                                   key=lambda dval: date_to_numerical(dval[0])):
                 median, cnt, amt = \
