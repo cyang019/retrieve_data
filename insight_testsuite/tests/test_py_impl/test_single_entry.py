@@ -26,6 +26,9 @@ class TestExtractLineInfo(unittest.TestCase):
                          "230||PR1890575345050|1147350||"
                          "P/R DEDUCTION ($115.00 BI-WEEKLY)|"
                          "4020820171370029335")
+        # test hand written input
+        cls.input_str3 = ("C0001011|A|B|C|D|E|F|G|H|I|02139|K|L|"
+                          "09062016|3001||M|N|O")
 
     def test_empty_input(self):
         self.assertRaises(NotEnoughFields,\
@@ -48,6 +51,16 @@ class TestExtractLineInfo(unittest.TestCase):
         self.assertEqual("01312017", t_dt)
         self.assertEqual("230", t_amt)
         self.assertEqual("", other_id)
+
+    def test_correct_input_3(self):
+        cmte_id, zipcode, t_dt, t_amt, other_id = \
+                extract_info_from_line(self.input_str3)
+        self.assertEqual("C0001011", cmte_id)
+        self.assertEqual("02139", zipcode)
+        self.assertEqual("09062016", t_dt)
+        self.assertEqual("3001", t_amt)
+        self.assertEqual("", other_id)
+
 
 
 if __name__ == '__main__':

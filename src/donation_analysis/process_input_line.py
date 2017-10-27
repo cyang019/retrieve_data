@@ -122,6 +122,7 @@ class Record:
             # record entry for the recipient and date combination
             self.add_date_num(\
                     cmte_id, t_dt, t_amt)
+
         return out_str
 
     def add_zip_num(self, cmte_id, zip_code, t_amt):
@@ -147,7 +148,7 @@ class Record:
         if cmte_id not in self.date_track:
             self.date_track[cmte_id] = {}
 
-        if date not in self.zip_track[cmte_id]:
+        if date not in self.date_track[cmte_id]:
             self.date_track[cmte_id][date] = StaticMedian()
 
         self.date_track[cmte_id][date].push(t_amt)
@@ -156,13 +157,12 @@ class Record:
     def calc_and_export_medianvals_by_date(self, file_handler):
         """Calculate and export median values by dates for recipients.
         """
-        recipients = sorted(self.date_track.keys())
         for r, date_vals in sorted(self.date_track.items()):
             # for each recipient, sort date using date_to_numerical values
             for d, vals in sorted(date_vals.items(), \
                                   key=lambda dval: date_to_numerical(dval[0])):
                 median, cnt, amt = \
-                        self.date_track[r][d].calc_median_and_export_vals()
+                        vals.calc_median_and_export_vals()
                 out_str = "|".join([r, d, str(median), str(cnt), str(amt)])
                 out_str += "\n"
                 file_handler.write(out_str)

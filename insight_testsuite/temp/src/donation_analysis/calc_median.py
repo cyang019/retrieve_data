@@ -90,18 +90,115 @@ class StaticMedian:
         """initialize container with an empty list.
         """
         self.vals = []
-        self.amt = 0
         self.cnt = 0
+        self.amt = 0
 
     def push(self, val):
         """add one element into container and update attributes.
         """
-        self.vals.append(int(val))
+        val = int(val)
+        self.vals.append(val)
         self.cnt += 1
-        self.amt += int(val)
+        self.amt += val
 
     def calc_median(self):
-        """calculate median of all values.
+        """if has less than 6 elements, use default, otherwise use quick_select.
+        """
+        if self.cnt < 6:
+            return self.calc_median_default()
+        else:
+            return self.calc_median_quick_select()
+
+    def calc_median_and_export_vals(self):
+        """calculate median and export median, count and total amount.
+        """
+        m = self.calc_median()
+        return m, self.cnt, self.amt
+
+    def calc_pivot(self, left, right):
+        """calculate pivots by median of three.
+        """
+        pivots = [[self.vals[left], left],\
+                  [self.vals[(right+left+1)//2], (right+left+1)//2],\
+                  [self.vals[right], right]]
+        pivots.sort(key=lambda tup:tup[0])
+        return pivots[1][1]
+
+    def partition(self, left, right, pivot):
+        """calculate partition of the mid range with same value as pivot.
+
+        Returns:
+            indexLeft: index where value pivot begins
+            indexRight: index where value pivot ends
+        """
+        pivot_val = self.vals[pivot]
+        # swap pivot to the right
+        self.vals[pivot], self.vals[right] = self.vals[right], self.vals[pivot]
+        indexLeft = left
+        for i in range(left, right):
+            if self.vals[i] < pivot_val:
+                if i == indexLeft:
+                    pass
+                else:
+                    # swap smaller values to the left of pivot
+                    self.vals[i], self.vals[indexLeft] = \
+                            self.vals[indexLeft], self.vals[i]
+                indexLeft += 1
+        self.vals[indexLeft], self.vals[right] = \
+                self.vals[right], self.vals[indexLeft]
+        indexRight = indexLeft
+        # look for the range of same values as pivot
+        for j in range(indexLeft+1, right):
+            if self.vals[j] == pivot_val:
+                indexRight += 1
+                if j == indexRight:
+                    pass
+                else:
+                    self.vals[j], self.vals[indexRight] = \
+                            self.vals[indexRight], self.vals[j]
+        return indexLeft, indexRight
+
+    def select_n(self, left, right, n):
+        """select the nth element. (deals with repeat values as well)
+        """
+        while True:
+            if left == right:
+                return self.vals[left]
+            pivot = self.calc_pivot(left, right)
+            left_idx, right_idx = self.partition(left, right, pivot)
+            if left_idx <= n <= right_idx:
+                return self.vals[left_idx]
+            elif n < left_idx:
+                right = left_idx - 1
+            else:
+                left = right_idx + 1
+
+    def select_mid_2(self, left, right, n):
+        """select the nth, and (n-1)th elements.
+        """
+        val1 = self.select_n(left, right, n-1)
+        # because lower half already sorted by select_n()
+        val2 = min(self.vals[n:])
+        val = 0.5 * (val1 + val2)
+        frac_part, int_part = math.modf(val)
+        return int(int_part) + (frac_part >= 0.5)
+
+    def calc_median_quick_select(self):
+        """ calculate median by partial quick sort.
+        """
+        if self.cnt == 0:
+            return 0
+
+        if self.cnt%2 == 1:
+            return self.select_n(0, self.cnt-1, self.cnt//2)
+        else:
+            # return average of n/2 and n/2-1
+            return self.select_mid_2(0, self.cnt-1, self.cnt//2)
+
+    def calc_median_default(self):
+        """calculate median of all values by sorting first.
+
+        The time complexity of this one ~ nlog(n)
         """
         self.vals.sort()
         n_components = len(self.vals)
@@ -114,10 +211,5 @@ class StaticMedian:
         else:
             return self.vals[n_components//2]
 
-    def calc_median_and_export_vals(self):
-        """calculate median and export median, count and total amount.
-        """
-        m = self.calc_median()
-        return m, self.cnt, self.amt
     
 
