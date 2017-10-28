@@ -41,27 +41,37 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
+# donation_analysis library source code
+set(MYLIBDIR
+    "${CMAKE_CURRENT_SOURCE_DIR}/../donation_analysis_cpp"
+)
+
+set(mysrcs
+    ${MYLIBDIR}/include/MedianInterface.h
+    ${MYLIBDIR}/include/MedianRunning.h
+    ${MYLIBDIR}/include/MedianStatic.h
+    ${MYLIBDIR}/src/MedianRunning.cpp
+    ${MYLIBDIR}/src/MedianStatic.cpp
+)
+
 # test cases
 set(srcs
     ${CMAKE_CURRENT_SOURCE_DIR}/testMedian.cpp
 )
 
 get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR} DIRECTORY)
-set(CMAKE_PREFIX_PATH
-    ${PARENT_DIR}/donation_analysis_cpp/build
-    )
+#set(CMAKE_PREFIX_PATH
+#    ${PARENT_DIR}/cpp_impl/lib/cmake
+#    )
 
-message("${PARENT_DIR}")
+# import library target `donation_analysis`
+#find_package(donation_analysis CONFIG REQUIRED)
 
-find_library(MYLIB
-    NAMES 
-    donation_analysis
-    PATHS 
-    ${CMAKE_PREFIX_PATH} NO_DEFAULT_PATH
-    )
-
-add_executable(runUnitTests ${srcs})
-target_link_libraries(runUnitTests ${MYLIB})
+add_executable(runUnitTests ${srcs} ${mysrcs})
+include_directories( 
+    ${PARENT_DIR}/donation_analysis_cpp/include
+)
+target_link_libraries(runUnitTests gtest_main)
 add_test(runUnitTests srcs)
 
 

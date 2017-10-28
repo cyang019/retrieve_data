@@ -4,13 +4,12 @@
 #include "MedianInterface.h"
 #include <queue>
 #include <vector>
-#include <string>
 #include <cstdint>
 
 namespace donation_analysis {
 class MedianRunning : public MedianInterface {
 public:
-    MedianRunning() = default;
+    MedianRunning() : m_total_amt(0) {};
     MedianRunning(const MedianRunning&) = default;
     MedianRunning(MedianRunning &&) noexcept;
     MedianRunning& operator=(const MedianRunning &) = default;
@@ -24,7 +23,12 @@ public:
 
     /** calculate median of all values in the container.
      */
-    std::int64_t calc_median() override final;
+    std::int64_t calcMedian() override final;
+
+    size_t getCnt() const override final 
+    { return m_lower_q.size() + m_upper_q.size(); }
+
+    std::int64_t getAmt() const override final { return m_total_amt; }
 private:
     std::priority_queue<std::int64_t, 
                         std::vector<std::int64_t>, 
@@ -32,6 +36,7 @@ private:
     std::priority_queue<std::int64_t, 
                         std::vector<std::int64_t>, 
                         std::greater<std::int64_t>> m_upper_q;
+    std::int64_t m_total_amt;
 };  // class MedianRunning
 }   // namespace donation_analysis
 

@@ -19,7 +19,10 @@ public:
      * The method is not constant, because modification can
      * happen during the calculation
      */
-    virtual std::int64_t calc_median() = 0;
+    virtual std::int64_t calcMedian() = 0;
+
+    virtual size_t getCnt() const = 0;
+    virtual std::int64_t getAmt() const = 0;
 };  // class MedianBuff
 }   // namespace donation_analysis
 
