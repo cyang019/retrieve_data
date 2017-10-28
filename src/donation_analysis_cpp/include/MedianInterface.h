@@ -23,7 +23,7 @@ public:
 
     virtual size_t getCnt() const = 0;
     virtual std::int64_t getAmt() const = 0;
-};  // class MedianBuff
+};  // class MedianInterface
 }   // namespace donation_analysis
 
 #endif
