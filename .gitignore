@@ -8,3 +8,9 @@ input/raw_data/**
 
 # skip temp data
 insight_testsuite/temp/**
+
+# skip build for testing cmake
+**/build/**
+
+# skip input
+input/itcont.txt

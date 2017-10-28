@@ -1,0 +1,10 @@
+target_sources(donation_analysis
+    PRIVATE
+    "${CMAKE_CURRENT_LIST_DIR}/MedianInterface.h"
+    "${CMAKE_CURRENT_LIST_DIR}/MedianRunning.h"
+    "${CMAKE_CURRENT_LIST_DIR}/MedianStatic.h"
+    "${CMAKE_CURRENT_LIST_DIR}/Record.h"
+    "${CMAKE_CURRENT_LIST_DIR}/Tracker.h"
+    PUBLIC
+    "${CMAKE_CURRENT_LIST_DIR}/donation_analysis.h"
+)
