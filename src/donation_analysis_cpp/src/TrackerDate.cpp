@@ -63,26 +63,4 @@ namespace donation_analysis {
     {
         m_records_iter = m_records.begin();
     }
-
-    /*
-
-    TrackerDate::StrMap::iterator TrackerDate::begin() noexcept
-    { return m_records.begin(); }
-
-    TrackerDate::StrMap::const_iterator TrackerDate::begin() const noexcept
-    { return m_records.cbegin(); }
-
-    TrackerDate::StrMap::iterator TrackerDate::end() noexcept
-    { return m_records.end(); }
-
-    TrackerDate::StrMap::iterator TrackerDate::end() const noexcept
-    { return m_records.cend(); }
-
-    TrackerDate::StrMap& TrackerDate::operator[](const std::string &t_s)
-    { return m_records[t_s]; }
-
-    TrackerDate::StrMap& TrackerDate::operator[](std::string &&t_s) noexcept
-    { return m_records[std::move(t_s)];
-
-    */
 }   // namespace donation_analysis

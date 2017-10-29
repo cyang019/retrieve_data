@@ -30,8 +30,9 @@ install(
         include/MedianInterface.h
         include/MedianRunning.h
         include/MedianStatic.h
-        include/Record.h
-        include/Tracker.h
+        include/TrackerInterface.h
+        include/TrackerZip.h
+        include/TrackerDate.h
     DESTINATION
         include
 )

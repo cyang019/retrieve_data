@@ -74,14 +74,7 @@ public:
 
     TrackerInterface::EntryData getData() override final;
     void resetGetter() override final;
-    /*
-    StrMap::iterator begin() noexcept;
-    StrMap::const_iterator begin() const noexcept;
-    StrMap::iterator end() noexcept;
-    StrMap::const_iterator end() const noexcept;
-    StrMap& operator[](const std::string &);
-    StrMap& operator[](std::string &&) noexcept;
-    */
+
 private:
     StrMap m_records;
     StrMap::iterator m_records_iter;

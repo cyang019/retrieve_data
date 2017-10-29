@@ -50,8 +50,12 @@ set(mysrcs
     ${MYLIBDIR}/include/MedianInterface.h
     ${MYLIBDIR}/include/MedianRunning.h
     ${MYLIBDIR}/include/MedianStatic.h
+    ${MYLIBDIR}/include/TrackerInterface.h
+    ${MYLIBDIR}/include/TrackerZip.h
+    ${MYLIBDIR}/include/TrackerDate.h
     ${MYLIBDIR}/src/MedianRunning.cpp
     ${MYLIBDIR}/src/MedianStatic.cpp
+    ${MYLIBDIR}/src/TrackerZip.cpp
     ${MYLIBDIR}/src/TrackerDate.cpp
 )
 

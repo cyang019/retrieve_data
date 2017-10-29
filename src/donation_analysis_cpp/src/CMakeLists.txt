@@ -1,4 +1,9 @@
 target_sources(donation_analysis
     PRIVATE
+    "${CMAKE_CURRENT_LIST_DIR}/MedianInterface.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/MedianRunning.cpp"
+    "${CMAKE_CURRENT_LIST_DIR}/MedianStatic.cpp"
+    "${CMAKE_CURRENT_LIST_DIR}/TrackerInterface.cpp"
+    "${CMAKE_CURRENT_LIST_DIR}/TrackerZip.cpp"
+    "${CMAKE_CURRENT_LIST_DIR}/TrackerDate.cpp"
 )

@@ -7,5 +7,6 @@
 #include "Record.h"
 #include "TrackerInterface.h"
 #include "TrackerDate.h"
+#include "TrackerZip.h"
 
 #endif
