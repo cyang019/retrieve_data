@@ -3,8 +3,9 @@
 
 #include <unordered_map>
 #include <string>
-#include "MedianInterface.h"
 #include <tuple> 
+#include <cstdint>
+#include "MedianInterface.h"
 
 namespace donation_analysis {
 /** TrackerInterface is an abstract base class for hash table of hash table
@@ -25,16 +26,19 @@ public:
      * \param t_key2 is either zipcode or date as a string
      * \return a boolean.
      */
-    virtual bool has(const std::string &t_key1, const std::string &t_key2) const = 0;
+    virtual bool has(const std::string &t_key) const = 0;
 
     /** add an element into the Tracker container.
      */
-    Tracker& add(const std::string &t_k1, 
-                 const std::string &t_k2, 
-                 std::int64_t t_val) = 0;
+    virtual void add(const std::string &t_k, 
+                     std::int64_t t_val) = 0;
 
-    using TypeValCntAmt = std::tuple<std::int64_t, size_t, std::int64_t>;
-    TypeValCntAmt evaluate(const std::string &t_k1, const std::string &t_k2) = 0;
+    /// zipcode or date, median, count, transaction amount
+    using EntryData = std::tuple<std::string, 
+                                 std::int64_t, size_t, std::int64_t>;
+
+    virtual EntryData getData() = 0;
+    virtual void resetGetter() = 0;
 };  // class TrackerInterface
 }   // namespace dnonation_analysis
 

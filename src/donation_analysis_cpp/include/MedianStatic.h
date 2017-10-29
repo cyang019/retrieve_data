@@ -8,7 +8,7 @@
 namespace donation_analysis {
 class MedianStatic : public MedianInterface {
 public:
-    MedianStatic() : m_total_amt(0) {};
+    MedianStatic() : m_vals(), m_total_amt(0) {};
     MedianStatic(const MedianStatic&) = default;
     MedianStatic(MedianStatic &&) noexcept;
     MedianStatic& operator=(const MedianStatic &) = default;

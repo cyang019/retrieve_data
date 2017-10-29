@@ -5,6 +5,7 @@
 #include "MedianRunning.h"
 #include "MedianStatic.h"
 #include "Record.h"
-#include "Tracker.h"
+#include "TrackerInterface.h"
+#include "TrackerDate.h"
 
 #endif

@@ -52,11 +52,13 @@ set(mysrcs
     ${MYLIBDIR}/include/MedianStatic.h
     ${MYLIBDIR}/src/MedianRunning.cpp
     ${MYLIBDIR}/src/MedianStatic.cpp
+    ${MYLIBDIR}/src/TrackerDate.cpp
 )
 
 # test cases
 set(srcs
     ${CMAKE_CURRENT_SOURCE_DIR}/testMedian.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/testTracker.cpp
 )
 
 get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR} DIRECTORY)

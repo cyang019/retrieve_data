@@ -4,14 +4,18 @@
 #include <map>
 #include <string>
 #include <memory> // unique_ptr
-#include "MedianInterface.h"
-#include "TrackerInterface.h"
 #include <tuple> 
 #include <functional> // std::less<std::string>
+#include <iostream>
+#include "MedianInterface.h"
+#include "TrackerInterface.h"
 
 namespace donation_analysis {
 
 /** helper in organizing date strings in ascending order
+ *
+ * The comparison object has to be strickly weeak comparison
+ * when A == B, should return false
  *
  * date string should be organized as mmddyyyy
  * Month starts at position 0,
@@ -21,6 +25,7 @@ namespace donation_analysis {
 struct DateCmp {
     bool operator()(const std::string &lhs, const std::string &rhs) const
     {
+        if(lhs == rhs) return false;
         /// compare year first
         if(std::stoi(lhs.substr(4),nullptr) > std::stoi(rhs.substr(4),nullptr)){
             return false;
@@ -45,34 +50,41 @@ struct DateCmp {
 class TrackerDate : public TrackerInterface {
 public:
     TrackerDate();
-    TrackerDate(const TrackerDate&);
+    TrackerDate(const TrackerDate&) = delete;   ///< member has unique_ptr
     TrackerDate(TrackerDate&&) noexcept;
-    TrackerDate& operator=(const TrackerDate&);
+    TrackerDate& operator=(const TrackerDate&) = delete;    
+    ///< member has unique_ptr
     TrackerDate& operator=(TrackerDate&&) noexcept;
     ~TrackerDate();
 
     using PtrMedian = std::unique_ptr<MedianInterface>;
-    using StrMap = std::map<std::string, PtrMedian>;
-    using StrStrMap = std::map<std::string, StrMap, std::less<std::string>>;
+    using StrMap = std::map<std::string, PtrMedian, DateCmp>;   
+    ///< ordered according to date format mmddyyyy
 
     /** test if the keys are in the Tracker container already.
      *
-     * \param t_key1 is the cmte_id
-     * \param t_key2 is either zipcode or date as a string
+     * \param t_key is date as a string
      * \return a boolean.
      */
-    bool has(const std::string &t_key1, const std::string &t_key2) const;
+    bool has(const std::string &t_key) const override final;
 
     /** add an element into the Tracker container.
      */
-    Tracker& add(const std::string &t_k1, 
-                 const std::string &t_k2, 
-                 std::int64_t t_val);
+    void add(const std::string &t_k, std::int64_t t_val) override final;
 
-    using TypeValCntAmt = std::tuple<std::int64_t, size_t, std::int64_t>;
-    TypeValCntAmt 
+    TrackerInterface::EntryData getData() override final;
+    void resetGetter() override final;
+    /*
+    StrMap::iterator begin() noexcept;
+    StrMap::const_iterator begin() const noexcept;
+    StrMap::iterator end() noexcept;
+    StrMap::const_iterator end() const noexcept;
+    StrMap& operator[](const std::string &);
+    StrMap& operator[](std::string &&) noexcept;
+    */
 private:
-    StrStrMap m_records;
+    StrMap m_records;
+    StrMap::iterator m_records_iter;
 };  // class TrackerDate
 }   // namespace dnonation_analysis
 
