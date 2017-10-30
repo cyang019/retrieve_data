@@ -71,6 +71,14 @@ def check_date(date):
 
     return True
 
+def check_amt(amt):
+    """check if amount contains only integers.
+    """
+    if not amt.isdigit():
+        return False
+
+    return True
+
 def date_to_numerical(date):
     """convert date string to a number for chronological sorting.
 
@@ -112,6 +120,9 @@ class Record:
 
         if t_amt[0] == '-':
             # skip negative amount, since it's not received contribution.
+            return out_str
+
+        if not check_amt(t_amt):
             return out_str
         
         if check_zip(zip_code):

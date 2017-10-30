@@ -16,6 +16,8 @@ namespace donation_analysis {
     bool checkDate(const std::string &);
     /// test if Zipcode is valid.
     bool checkZipcode(const std::string &);
+    /// test if amount is digit
+    bool checkAmt(const std::string &);
 
     class Record {
     public:
@@ -77,6 +79,20 @@ namespace donation_analysis {
         if(std::find_if(t_s.begin(),
                 t_s.begin()+5, 
                 [](char c){ return !std::isdigit(c); }) != t_s.begin()+5)
+            return false;
+
+        return true;
+    }
+
+    /// check if amt contains non-digits
+    /// Assuming input amounts are all integers
+    inline bool checkAmt(const std::string &t_s)
+    {
+        if(t_s.empty()) return false;   ///< empty amount is invalid
+        if(!std::isdigit(t_s[0]) && (t_s[0] != '-')) return false;
+
+        if(std::find_if(t_s.begin()+1, t_s.end(),
+                    [](char c){ return !std::isdigit(c); }) != t_s.end())
             return false;
 
         return true;

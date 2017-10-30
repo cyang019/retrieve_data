@@ -7,6 +7,13 @@
 #include <cstdint>
 
 namespace donation_analysis {
+/** \class MedianRunning stores values for running median calculation
+ *
+ * The class use two priority_queue<>'s to store values. The lower half
+ * of values are stored in a max-heap, while the upper half of values are
+ * stored in a min-heap. Thus median values can be retrieved at constant
+ * time. And insertion of a value is bounded by O(nlog(n)).
+ */
 class MedianRunning : public MedianInterface {
 public:
     MedianRunning() : m_total_amt(0) {};

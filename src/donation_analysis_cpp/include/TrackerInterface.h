@@ -8,13 +8,11 @@
 #include "MedianInterface.h"
 
 namespace donation_analysis {
-/** TrackerInterface is an abstract base class for hash table of hash table
+/** TrackerInterface is an abstract base class to store values in order for 
+ * calculating medians.
  *
- * Both levels should have string as keys
- *
- * A recipient would need two Trackers: 
- *  1) cmte_id and zipcode are the two level keys.
- *  2) cmte_id and date are the two level keys.
+ * The provide provides `add()` to insert elements and `getData()` to retrieve
+ * median related data.
  *
  * The class provides flexibility for future extensions
  */
@@ -22,13 +20,15 @@ class TrackerInterface {
 public:
     /** pure virtual, test if the keys are in the Tracker container already.
      *
-     * \param t_key1 is the cmte_id
-     * \param t_key2 is either zipcode or date as a string
+     * \param t_key is either zipcode or date as a string
      * \return a boolean.
      */
     virtual bool has(const std::string &t_key) const = 0;
 
     /** add an element into the Tracker container.
+     *
+     * \param t_k is either a zipcode or date
+     * \param t_val is the value to add into the container.
      */
     virtual void add(const std::string &t_k, 
                      std::int64_t t_val) = 0;

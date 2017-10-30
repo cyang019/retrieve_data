@@ -23,6 +23,7 @@ using ::std::tuple;
 using ::std::unordered_map;
 
 namespace donation_analysis {
+    /// constructors
     Record::Record() : m_id_zip_records(), m_id_date_records()
     {}
 
@@ -41,6 +42,10 @@ namespace donation_analysis {
 
     Record::~Record() {}
 
+    /** store a single entry if valid, output a string for medianvals_by_zip.
+     * \param t_s is the input line
+     * \return a pipe separated record to output to medianvals_by_zip
+     */
     std::string Record::parse_single_entry(const string &t_s)
     {
         string cmte_id, zipcode, date, other_id;
@@ -91,6 +96,9 @@ namespace donation_analysis {
         return output_line;
     }
 
+    /** calculate and export medianvals_by_date to an ostream object.
+     * \param t_os is the output stream binded with a opened file for write.
+     */
     void Record::calc_and_export_medianvals_by_date(std::ostream &t_os)
     {
         string date;
@@ -140,7 +148,7 @@ namespace donation_analysis {
                 case 11: zipcode = token; break;    ///< ZIPCODE
                 case 14: date = token; break;   ///< TRANSACTION_DT
                 case 15: strAmt = token;    ///< TRANSACTION_AMT
-                         if(strAmt.empty()) amt = -1;   ///< if no amount
+                         if(!checkAmt(token)) amt = -1;
                          else {     /// convert char* to int
                             sAmt << token;
                             sAmt >> amt;

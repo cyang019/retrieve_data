@@ -6,6 +6,13 @@
 #include <cstdint>
 
 namespace donation_analysis {
+/** class MedianStatic stores values for infrequent calculation of medians.
+ *
+ * Beacuse one only needs to calculate median values infrequently. This
+ * container is using a vector to provide (on average) constant time insertion.
+ * The median value is calculated using a quick select algorithm by using
+ * STL's `nth_element()` method. 
+ */
 class MedianStatic : public MedianInterface {
 public:
     MedianStatic() : m_vals(), m_total_amt(0) {};

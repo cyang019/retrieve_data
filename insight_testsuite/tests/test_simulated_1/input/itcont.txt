@@ -1,0 +1,41 @@
+AB12CD34||||||||||??|||xx|40||xxx|
+AB14CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|05212013|50||ccc
+AB14CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|05212013|51||bbb
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|05212013|50||aaa
+||||||||||??|||xx|40||xxx|
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB12CD34||||||||||??|||01012012|10||xxx|
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB15CD34|2|3|4|5|6|7|8|9|10|01234|xx|13|abcde|50||InvalidDates
+AB10CD34|2|3|4|5|6|7|8|9| |23451|xx|13|02212016|1053019||has space
+AB10CD34|2|3|4|5|6|7|8|9| |23451|xx|13|02212016|1053017|??|other_id
+AB10CD34|2|3|4|5|6|7|8|9|10|23451|xx|13|02212016|105301a||misformated amount
+AB12CD34|2|3|4|5|6|7|8|9|10|xx4b1|xx|13|02212016|935||misformattedzip
+AB10CD34|2|3|4|5|6|7|8|9|10|234b1|xx|13|02212016|104||misformattedzip
+AB12CD34|2|3|4|5|6|7|8|9|10|xx4b1|xx|13|02112016|935||misformattedzip
+|2|3|4|5|6|7|8|9|10|234b1|xx|13|02212016|105||missing_cmte_id
+|2|3|4|5||7|8|9|10|234b1|xx|13|09232016|105||missing_cmte_id
+otherid|2|3|4|5|6|7||9|10|234b1|xx|13|07302015|105|?|xx||||||||
+|2|3|4|5|6|7||9|10|234b1|xx|13|08202015|105||missing_cmte_id
+AB12CD34|2|3|4|5|6|7|8|9|10|xx4b1x|xx|13|02212016|58992935||misformattedzip

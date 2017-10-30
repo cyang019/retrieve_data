@@ -215,10 +215,12 @@ class StaticMedian:
 
         The time complexity of this one ~ nlog(n)
         """
-        self.vals.sort()
         n_components = len(self.vals)
         if n_components == 0:
             return 0
+        if n_components == 1:
+            return self.vals[0]
+        self.vals.sort()
         if n_components%2 == 0:
             val = 0.5 * (self.vals[n_components//2] + self.vals[n_components//2-1])
             frac_part, int_part = math.modf(val)

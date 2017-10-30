@@ -39,10 +39,9 @@ struct DateCmp {
     }
 };  // struct DateCmp
 
-/** TrackerDate is a hashtable of hashtable of median container.
+/** TrackerDate is a map of unique_ptr to MedianInterface container.
  *
- * The first level use default sorting of key strings.
- * The second level sort date string considering "mmddyyyy"
+ * The map sorts date string considering "mmddyyyy"
  */
 class TrackerDate : public TrackerInterface {
 public:
