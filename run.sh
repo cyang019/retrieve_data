@@ -10,6 +10,8 @@
 # ---------------------------------------------------------------------
 ## cpp implementation
 ## Uncomment the lines below with a single '#' to use cpp implementations
+## Comment out below lines and uncomment the above python line to use pythonn
+## implementation.
 ####################
 ## use cmake to compile if file not already compiled
 if [ ! -e find_political_donors ]

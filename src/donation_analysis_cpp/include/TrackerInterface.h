@@ -12,7 +12,7 @@ namespace donation_analysis {
  * calculating medians.
  *
  * The provide provides `add()` to insert elements and `getData()` to retrieve
- * median related data.
+ * median, count, and total amount.
  *
  * The class provides flexibility for future extensions
  */
