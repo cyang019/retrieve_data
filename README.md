@@ -1,22 +1,11 @@
 # Table of Contents
-1. [Introduction](README.md#introduction)
-2. [Challenge summary](README.md#challenge-summary)
-3. [Details of challenge](README.md#details-of-challenge)
-4. [Input file](README.md#input-file)
-5. [Output files](README.md#output-files)
-6. [Example](README.md#example)
-7. [Writing clean, scalable and well-tested code](README.md#writing-clean-scalable-and-well-tested-code)
-8. [Repo directory structure](README.md#repo-directory-structure)
-9. [Testing your directory structure and output format](README.md#testing-your-directory-structure-and-output-format)
-10. [Instructions to submit your solution](README.md#instructions-to-submit-your-solution)
-11. [FAQ](README.md#faq)
+1. [Abstract](README.md#abstract)
+2. [Description of methods](README.md#description-of-methods)
+3. [Structure of source code directory](README.md#structure-of-source-code-directory)
+4. [Additional Info](README.md#additional-info)
 
-# Introduction
-You’re a data engineer working for political consultants and you’ve been asked to help identify possible donors for a variety of upcoming election campaigns. 
-
-The Federal Election Commission regularly publishes campaign contributions and while you don’t want to pull specific donors from those files — because using that information for fundraising or commercial purposes is illegal — you want to identify the areas (zip codes) that may be fertile ground for soliciting future donations for similar candidates. 
-
-Because those donations may come from specific events (e.g., high-dollar fundraising dinners) but aren’t marked as such in the data, you also want to identify which time periods are particularly lucrative so that an analyst might later correlate them to specific fundraising events.
+# Abstract
+This repo provides support in helping retrieve campaign contribution data from Federal Election Commission (FEC). Input files can be downloaded from the [FEC website]()
 
 # Challenge summary
 
