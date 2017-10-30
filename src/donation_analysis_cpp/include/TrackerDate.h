@@ -26,18 +26,15 @@ struct DateCmp {
     bool operator()(const std::string &lhs, const std::string &rhs) const
     {
         if(lhs == rhs) return false;
+
         /// compare year first
-        if(std::stoi(lhs.substr(4),nullptr) > std::stoi(rhs.substr(4),nullptr)){
-            return false;
-        }
-        /// compare month
-        if(std::stoi(lhs.substr(0,2),nullptr) > std::stoi(rhs.substr(0,2),nullptr)){
-            return false;
-        }
-        /// compare date
-        if(std::stoi(lhs.substr(2,2),nullptr) > std::stoi(rhs.substr(2,2),nullptr)){
-            return false;
-        }
+        if(lhs.substr(4,4) > rhs.substr(4,4)) return false;
+        if(lhs.substr(4,4) < rhs.substr(4,4)) return true;
+
+        /// then compare month and date
+        if(lhs.substr(0,4) > rhs.substr(0,4)) return false;
+
+        /// otherwise (lhs.substr(0,4) < rhs.substr(0,4))
         return true;
     }
 };  // struct DateCmp

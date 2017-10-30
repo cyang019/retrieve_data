@@ -3,8 +3,15 @@
 **/*.pyc
 **/__pycache__/**
 
-# skip raw data
-input/raw_data/**
+# skip raw input (size too big)
+raw_input/**
+
+# skip global input
+input/**
+
+# skip global output
+output/*.txt
+output/*.log
 
 # skip temp data
 insight_testsuite/temp/**
@@ -12,5 +19,5 @@ insight_testsuite/temp/**
 # skip build for testing cmake
 **/build/**
 
-# skip input
-input/itcont.txt
+# skip executable
+find_political_donors

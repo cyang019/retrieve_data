@@ -47,10 +47,10 @@ namespace donation_analysis {
     TrackerInterface::EntryData TrackerDate::getData()
     {
         if(m_records_iter != m_records.end()){
+            const std::string date = m_records_iter->first;
             auto median = m_records_iter->second->calcMedian();
             auto cnt = m_records_iter->second->getCnt();
             auto amt = m_records_iter->second->getAmt();
-            std::string date = m_records_iter->first;
 
             ++m_records_iter;
 

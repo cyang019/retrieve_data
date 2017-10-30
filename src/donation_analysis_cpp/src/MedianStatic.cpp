@@ -32,7 +32,7 @@ namespace donation_analysis {
         if(m_vals.size() == 1u) return m_vals[0];
 
         const auto idx = m_vals.size()/2;
-        if(idx%2 == 0u){
+        if(m_vals.size()%2 == 0u){
             /// get (n-1)th index, and partial sort first half
             nth_element(m_vals.begin(), 
                         m_vals.begin() + idx-1, 

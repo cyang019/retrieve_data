@@ -107,10 +107,11 @@ class StaticMedian:
         If has more than 6 elements and only need to find center, 
         use quick select. Otherwise sort first then select
         """
-        if (self.cnt > 6) and (self.cnt%2 == 1):
-            return self.calc_median_quick_select()
-        else:
-            return self.calc_median_default()
+        return self.calc_median_default()
+        #if (self.cnt > 6) and (self.cnt%2 == 1):
+        #    return self.calc_median_quick_select()
+        #else:
+        #    return self.calc_median_default()
 
     def calc_median_and_export_vals(self):
         """calculate median and export median, count and total amount.

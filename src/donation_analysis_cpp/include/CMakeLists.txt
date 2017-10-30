@@ -1,12 +1,28 @@
-target_sources(donation_analysis
-    PRIVATE
-    "${CMAKE_CURRENT_LIST_DIR}/MedianInterface.h"
-    "${CMAKE_CURRENT_LIST_DIR}/MedianRunning.h"
-    "${CMAKE_CURRENT_LIST_DIR}/MedianStatic.h"
-    "${CMAKE_CURRENT_LIST_DIR}/Record.h"
-    "${CMAKE_CURRENT_LIST_DIR}/TrackerInterface.h"
-    "${CMAKE_CURRENT_LIST_DIR}/TrackerDate.h"
-    "${CMAKE_CURRENT_LIST_DIR}/TrackerZip.h"
-    PUBLIC
-    "${CMAKE_CURRENT_LIST_DIR}/donation_analysis.h"
-)
+if(INDEPENDENT_LIB)
+    target_sources(donation_analysis
+        PRIVATE
+        "${CMAKE_CURRENT_LIST_DIR}/MedianInterface.h"
+        "${CMAKE_CURRENT_LIST_DIR}/MedianRunning.h"
+        "${CMAKE_CURRENT_LIST_DIR}/MedianStatic.h"
+        "${CMAKE_CURRENT_LIST_DIR}/Record.h"
+        "${CMAKE_CURRENT_LIST_DIR}/TrackerInterface.h"
+        "${CMAKE_CURRENT_LIST_DIR}/TrackerDate.h"
+        "${CMAKE_CURRENT_LIST_DIR}/TrackerZip.h"
+        PUBLIC
+        "${CMAKE_CURRENT_LIST_DIR}/donation_analysis.h"
+    )
+endif()
+
+if(FIND_POLITICAL_DONORS)
+    target_sources(find_political_donors
+        PRIVATE
+        "${CMAKE_CURRENT_LIST_DIR}/MedianInterface.h"
+        "${CMAKE_CURRENT_LIST_DIR}/MedianRunning.h"
+        "${CMAKE_CURRENT_LIST_DIR}/MedianStatic.h"
+        "${CMAKE_CURRENT_LIST_DIR}/Record.h"
+        "${CMAKE_CURRENT_LIST_DIR}/TrackerInterface.h"
+        "${CMAKE_CURRENT_LIST_DIR}/TrackerDate.h"
+        "${CMAKE_CURRENT_LIST_DIR}/TrackerZip.h"
+        "${CMAKE_CURRENT_LIST_DIR}/donation_analysis.h"
+    )
+endif()

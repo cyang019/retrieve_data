@@ -27,6 +27,11 @@ namespace donation_analysis {
     TrackerZip::~TrackerZip() {}
 
 /// methods
+
+    /** tests if a key is in the TrackerZip container
+      * \param t_key is the zipcode to look for.
+      * \return a boolean value.
+      */
     bool TrackerZip::has(const std::string &t_key) const
     {
         auto pos = m_records.find(t_key);
@@ -35,6 +40,13 @@ namespace donation_analysis {
         return true;
     }
 
+    /** add a component into the TrackerZip container
+     *
+     * The method would also store the key in m_last_zipcode for output.
+     *
+     * \param t_k is the key
+     * \param t_val is the value
+     */
     void TrackerZip::add(const std::string &t_k,
                           std::int64_t t_val)
     {
@@ -50,14 +62,14 @@ namespace donation_analysis {
     TrackerInterface::EntryData TrackerZip::getData()
     {
         if(!m_last_zipcode.empty()){
-            auto median = m_records[m_last_zipcode]->calcMedian();
-            auto cnt = m_records[m_last_zipcode]->getCnt();
-            auto amt = m_records[m_last_zipcode]->getAmt();
-            const std::string zipcode = m_last_zipcode;
+            const std::string zip = m_last_zipcode;
+            auto median = m_records[zip]->calcMedian();
+            auto cnt = m_records[zip]->getCnt();
+            auto amt = m_records[zip]->getAmt();
 
-            this->resetGetter();
-            return std::make_tuple(zipcode, median, cnt, amt); 
+            return std::make_tuple(zip, median, cnt, amt); 
         }
+        /// if not found, returns a dummy entry
         return std::make_tuple("", 0, 0, 0);
     }
 

@@ -109,6 +109,10 @@ class Record:
         if (len(other_id) > 0) or (len(cmte_id) == 0) or (len(t_amt) == 0):   
             # skip invalid inputs
             return out_str
+
+        if t_amt[0] == '-':
+            # skip negative amount, since it's not received contribution.
+            return out_str
         
         if check_zip(zip_code):
             # record entry and return updated median, count, and total amount

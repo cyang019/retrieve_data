@@ -9,9 +9,18 @@
 TEST(TestTrackerDate, DateCmp){
     using namespace donation_analysis;
     DateCmp cmp;
+    // year
     EXPECT_TRUE(cmp("01012014", "01012015"));
+    EXPECT_FALSE(cmp("01012015", "01012014"));
+    // month
     EXPECT_TRUE(cmp("01012014", "02012014"));
+    EXPECT_FALSE(cmp("02012014", "01012014"));
+    // date
     EXPECT_TRUE(cmp("01112014", "01212014"));
+    EXPECT_FALSE(cmp("01212014", "01112014"));
+    
+    EXPECT_TRUE(cmp("09262016", "01032017")); 
+    EXPECT_FALSE(cmp("01032017", "09262016")); 
 }
 
 TEST(TestTrackerDate, Constructor){
