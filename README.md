@@ -16,7 +16,7 @@ This repo provides support to retrieve campaign contribution data from Federal E
 
 # Details of Implementation
 
-### A high level description of the procedure to process input data
+### A high level description of the input data processing procedure
 1. a parser is created. 
 2. for each line of input, its fields corresponding to `CMTE_ID`, `ZIP_CODE`, `TRANSACTION_DT`, `TRANSACTION_AMT`, and `OTHER_ID` are extracted. 
 2. If the line is valid (with a non-empty `CMTE_ID`, empty `OTHER_ID` and non-negative `TRANSACTION_AMT`) the data is taken. 
