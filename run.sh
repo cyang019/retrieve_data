@@ -24,9 +24,9 @@ then
     make
 fi
 #####################
-#
-# change back to parent directory
+##
+## change back to parent directory
 cd ..
-# execute
+## execute
 ./find_political_donors ./input/itcont.txt ./output/medianvals_by_zip.txt ./output/medianvals_by_date.txt
 # ---------------------------------------------------------------------
