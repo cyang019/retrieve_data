@@ -1,9 +1,9 @@
 # Table of Contents
 1. [Abstract](#abstract)
 2. [Prerequisites](#Prerequisites)
-3. [Details of implementation](#details-of-implementation)
+3. [Details of Implementation](#details-of-implementation)
 4. [How to use the code](#how-to-use-the-code)
-5. [Additional info](#additional-info)
+5. [Additional Info](#additional-info)
 
 # Abstract
 This repo provides support to retrieve campaign contribution data from Federal Election Commission (FEC). Input files containing contributions by individuals can be downloaded from the [FEC website](http://classic.fec.gov/finance/disclosure/ftpdet.shtml). Data formats are explained [here](http://classic.fec.gov/finance/disclosure/metadata/DataDictionaryContributionsbyIndividuals.shtml). The focus of this repo is to export median values categorized using Filer Identification Number, zipcode, and transaction date from the raw data on the FEC webpage. To accomplish this task, as each line from an input file being fed into a parser, one output file keeps track of the running median of a recipient (CMTE_ID) and zipcode, while the other output sorts and summaries the medians using unique combinations of recipients and transaction dates. Both [C++ implementation](src/donation_analysis_cpp) and [python3 implementation](src/donation_analysis) are shown inside the repo.
@@ -35,10 +35,14 @@ Python3 implementation is located [here](src/find_political_donors.py)
 * To keep track of cmte_id-zipcode pair or cmte_id-date pair, in python implementation, dictionary was used to store a median container for each unique pair. In C++ implementation, strategy pattern was used for both median calculation container and tracker for each two level key-pairs. The tracker for both zipcode and date has the same interface to add in data and to retrieve data. And the median containers both use `push()` to add in values and `calcMedian()` for median calculation. In tracking zipcode, `std::unordered_map` was used, while in tracking date, `std::map` was used with a customized comparison function to sort dates in chronological order. Python dictionary was easy enough to use directly, and because of duck typing, such inheritance was not used in the python code. 
 
 # How to use the code
-The [run.sh](run.sh) contains script to take input file with name `itcont.txt` from [input](input) directory, and would create `medianvals_by_zip.txt` and `medianvals_by_date` in the [output](output) directory. **By default, C++ implementation is enabled.** To use python implementation, uncomment `python ./src/find_political_donors.py ./input/itcont.txt ./output/medianvals_by_zip.txt ./output/medianvals_by_date.txt` and comment out all rest lines by `#`. To use C++ implementation, uncomment line 17 through 31 if no double `#` was presented on that line, and comment out the python implementation line.
+The [run.sh](run.sh) contains script to take input file with name `itcont.txt` from [input](input) directory, and would create `medianvals_by_zip.txt` and `medianvals_by_date` in the [output](output) directory. **By default, C++ implementation is enabled.** 
+
+To switch to python implementation, uncomment `python ./src/find_political_donors.py ./input/itcont.txt ./output/medianvals_by_zip.txt ./output/medianvals_by_date.txt` and comment out all rest lines by `#`. 
+
+To switch back to C++ implementation, uncomment line 17 through 31 if no double `#` was presented on that line, and comment out the python implementation line.
 
 
 # Additional Info
 * unittests for C++ source code are located inside [src/unittest_cpp](src/unittest_cpp). googletest was configured using cmake.
 * unittests for python source code are located inside [src/unittest_py3](src/unittest_py3).
-* To use the C++ implementations for containers and median calculators as a separate library(**not related to the main purpose of the project**), change the OFF to ON in the [CMakeLists.txt](src/donation_analysis_cpp/CMakeLists.txt) on line 8: `option(INDEPENDENT_LIB "build an independent library" OFF)`. and then create a directory `build`, `cd build`, `cmake ..`, then `make install`. The library would be installed in `src/cpp_impl` after `make install`. To delete the libary, simply remove the created directory and the files inside it.
+* To use the C++ implementations for containers and median calculators as a separate library(**not related to the main purpose of the project**), change the `OFF` to `ON` in the [CMakeLists.txt](src/donation_analysis_cpp/CMakeLists.txt) on line 8: `option(INDEPENDENT_LIB "build an independent library" OFF)`. and then create a directory `build`, `cd build`, `cmake ..`. Finally `make install` would install the library at location `src/cpp_impl` after `make install`. To delete the libary, simply remove the created files within that newly created directory `src/cpp_impl`.
