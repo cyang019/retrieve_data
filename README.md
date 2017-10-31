@@ -46,3 +46,4 @@ To switch back to C++ implementation, uncomment line 17 through 31 if no double 
 * unittests for C++ source code are located inside [src/unittest_cpp](src/unittest_cpp). googletest was configured using cmake.
 * unittests for python source code are located inside [src/unittest_py3](src/unittest_py3).
 * To use the C++ implementations for containers and median calculators as a separate library(**not related to the main purpose of the project**), change the `OFF` to `ON` in the [CMakeLists.txt](src/donation_analysis_cpp/CMakeLists.txt) on line 8: `option(INDEPENDENT_LIB "build an independent library" OFF)`. and then create a directory `build`, `cd build`, `cmake ..`. Finally `make install` would install the library at location `src/cpp_impl` after `make install`. To delete the libary, simply remove the created files within that newly created directory `src/cpp_impl`.
+
