@@ -1,5 +1,5 @@
 import unittest
-import context
+from . import context
 
 from donation_analysis import RunningMedian
 

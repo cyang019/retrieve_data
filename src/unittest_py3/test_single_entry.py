@@ -1,5 +1,5 @@
 import unittest
-import context
+from . import context
 
 from donation_analysis import NotEnoughFields
 from donation_analysis import Record, extract_info_from_line

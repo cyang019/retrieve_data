@@ -1,5 +1,5 @@
 import unittest
-import context
+from . import context
 
 from donation_analysis import check_zip, check_date, date_to_numerical
 
