@@ -21,7 +21,7 @@ def main():
         f_out_running = open(args.output_by_zip_filename, "a+")
         for line in f:
             output_str = r.parse_single_entry(line) 
-            if output_str:
+            if output_str:  # skip invalid input
                 f_out_running.write(output_str)
         f_out_running.close()
 
