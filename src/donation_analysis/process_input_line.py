@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-
+This module provides methods to extract info from lines and to keep track.
 """
 
 from .calc_median import RunningMedian, StaticMedian
@@ -43,6 +43,12 @@ def extract_info_from_line(line):
 
 def check_zip(zip_code):
     """check if zip code has correct format.
+
+    Args:
+        zip_code as a string
+
+    Returns:
+        a boolean indicating if valid (True) or not (False)
     """
     if len(zip_code) < 5:
         return False
@@ -52,6 +58,12 @@ def check_zip(zip_code):
 
 def check_date(date):
     """check if date string has correct format.
+
+    Args:
+        date as a string mmddyyyy
+
+    Returns:
+        a boolean indicating if valid (True) or not (False)
     """
     if len(date) != 8:
         return False
@@ -110,6 +122,13 @@ class Record:
 
     def parse_single_entry(self, line):
         """Given a line of input, returns runing median and record data.
+
+        Args:
+            line: a line from input file
+
+        Returns:
+            A string of cmte_id, zipcode, running median, cnt, amt separated 
+            by pipe.
         """
         cmte_id, zip_code, t_dt, t_amt, other_id = extract_info_from_line(line)
 
@@ -159,6 +178,11 @@ class Record:
 
     def add_date_num(self, cmte_id, date, t_amt):
         """add transaction amount to the track for date categorized record.
+
+        Args:
+            cmte_id: Recipient unique id number
+            date: date in a string format mmddyyyy
+            t_amt: transaction amount (only non-negative values taken)
         """
         if cmte_id not in self.date_track:
             self.date_track[cmte_id] = {}
@@ -171,6 +195,9 @@ class Record:
 
     def calc_and_export_medianvals_by_date(self, file_handler):
         """Calculate and export median values by dates for recipients.
+
+        Args:
+            file_handler: an opened file stream for output.
         """
         for r, date_vals in sorted(self.date_track.items()):
             # for each recipient, sort date using date_to_numerical values
