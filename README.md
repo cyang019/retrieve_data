@@ -1,6 +1,6 @@
 # Table of Contents
 1. [Abstract](#abstract)
-2. [Prerequisites](#Prerequisites)
+2. [Prerequisites](#prerequisites)
 3. [Details of Implementation](#details-of-implementation)
 4. [How to use the code](#how-to-use-the-code)
 5. [Additional Info](#additional-info)
