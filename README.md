@@ -17,14 +17,17 @@ This repo provides support to retrieve campaign contribution data from Federal E
 # Details of Implementation
 
 ### A high level description of the procedure to process input data
-[C++ implementation](src/donation_analysis_cpp/main.cpp)
-[python3 implementation](src/find_political_donors.py)
 1. a parser is created. 
 2. for each line of input, its fields corresponding to `CMTE_ID`, `ZIP_CODE`, `TRANSACTION_DT`, `TRANSACTION_AMT`, and `OTHER_ID` are extracted. 
 2. If the line is valid (with a non-empty `CMTE_ID`, empty `OTHER_ID` and non-negative `TRANSACTION_AMT`) the data is taken. 
 3. If `ZIP_CODE` is valid (at least 5 digits), it would be stored in a _running median_ container. The running median along with count and total amount are calculated right away for the recipient with a zipcode. These values are written to `medianvals_by_zip.txt` directly.
 4. If `TRANSACTION_DT` is valid (*mmddyyyy*), it would be stored in a _static median_ container for later calculation.
 5. After input of all lines finish, calculate median from values contained in the _static median_ container and output to file `medianvals_by_date.txt`.
+
+
+C++ implementation is located [here](src/donation_analysis_cpp/main.cpp) 
+
+Python3 implementation is located [here](src/find_political_donors.py)
 
 ### Explanation of Components
 * The running median calculator was implemented using two heaps. A max heap keeps track of the maximum value of the lower half of stored values, while a min heap keeps track of the minimum value of the upper half of stored values. They should either contain same number of elements or have the number of elements differ by 1. The time complexity for inserting an element would be bounded by O(logn) and retrieve the value would be an O(1) operation. The algorithm would take O(n) space for median calculation.
